@@ -1,0 +1,33 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<form action="index.html" method="post">
+    <select name="number" id="number">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <input type="button" name="button" id="btn" value="send">
+</form>
+
+<script>
+    $('#btn').on('click', function () {
+       let parameter = "?number="+$('#number').val();
+       window.location.href = parameter;
+       $('form').submit();
+    });
+
+    function getUrlParameter(sParam) {
+        let sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'), // split values in here.
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    }
+
+    console.log(getUrlParameter('number'));
+</script>
